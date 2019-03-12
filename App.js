@@ -13,7 +13,8 @@ import PlaceInput from './src/components/PlaceInput';
 import PlaceAddBtn from './src/components/PlaceAddBtn';
 import PlaceList from './src/components/PlaceList';
 import { connect } from 'react-redux';
-import { addPlace, selectPlace, changePlace, clearPlace } from './src/store/actions/placeAction';
+import PlaceDetail from './src/components/PlaceDetail';
+import { addPlace, deSelectedPlace,deletePlace , selectPlace, changePlace, clearPlace } from './src/store/actions/placeAction';
 
 
 const instructions = Platform.select({
@@ -39,14 +40,21 @@ class App extends Component {
   }
 
   _itemPress = (item) => {
-    alert(item.value)
     this.props.selectPlace(item.key)
+  }
+
+  _itemClose = () => {
+    this.props.deSelectedPlace()
+  }
+
+  _itemDelete = () => {
+      this.props.deletePlace()
   }
 
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>{this.props.selectedPlace?  this.props.selectedPlace.value: ''}</Text>
+        <PlaceDetail deletePlaceHandler={this._itemDelete} closePlaceHandler={this._itemClose} selectedPlace={this.props.selectedPlace} />
         <Text style={styles.welcome}>Do you have Favorite Place in world?</Text>
         <View style={styles.inputContainer}>
           <PlaceInput value={this.props.placeName} onChangeText={this._onChangedText} />
@@ -81,7 +89,7 @@ const mapStateToProps = (state) => {
   return {
     places: state.reducer.places,
     placeName: state.reducer.placeName,
-    selectedPlace : state.reducer.selectedPlace
+    selectedPlace: state.reducer.selectedPlace
   }
 }
 
@@ -98,6 +106,12 @@ const mapDispatchToProps = dispatch => {
     },
     selectPlace: (key) => {
       dispatch(selectPlace(key))
+    },
+    deSelectedPlace: () => {
+      dispatch(deSelectedPlace())
+    },
+    deletePlace : (key) => {
+      dispatch(deletePlace())
     }
   }
 }

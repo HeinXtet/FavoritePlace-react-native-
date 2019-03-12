@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { FlatList, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { FlatList, TouchableOpacity, Text, StyleSheet, View, Image } from 'react-native';
 
 const PlaceList = (props) => {
 
     _renderItem = (item) => {
         return (
-            <TouchableOpacity onPress={()=>props.itemPress(item)} style={styles.rowItem}>
-                <Text style={styles.rowTxt}>{item.value}</Text>
+            <TouchableOpacity onPress={() => props.itemPress(item)} style={styles.rowItem}>
+                <View style={styles.listItem}>
+                    <Image style={styles.image} source={item.image} />
+                    <Text style={styles.rowTxt}>{item.value}</Text>
+                </View>
             </TouchableOpacity>
         )
     }
@@ -21,12 +24,23 @@ const PlaceList = (props) => {
 
 
 const styles = StyleSheet.create({
+    listItem: {
+        alignContent : 'center',
+        flexDirection: 'row'
+    },
+    image: {
+        width: 80,
+        height: 50,
+    },
     rowItem: {
         padding: 16,
         marginBottom: 8,
-        backgroundColor: '#eee'
+        fontSize: 16,
+        
+        backgroundColor: 'black'
     },
     rowTxt: {
+        marginLeft : 16,
         color: 'grey'
     }
 })
