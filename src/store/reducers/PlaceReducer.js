@@ -43,7 +43,7 @@ const PlaceReducer = (state = initState, action) => {
                 ...state,
                 selectedPlace: null
             }
-            break
+        
         case ACTION_CHANGE_PLACE:
             return {
                 ...state,

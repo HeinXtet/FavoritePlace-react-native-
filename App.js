@@ -32,6 +32,7 @@ class App extends Component {
   }
 
   _addPlace = () => {
+    console.log("Plcae Add")
     if (this.props.placeName.length === 0) {
       return;
     }

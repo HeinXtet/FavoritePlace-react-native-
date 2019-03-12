@@ -9,7 +9,7 @@ const PlaceDetail = (props) => {
             return (
                 <View>
                     <Image style={styles.image} source={place.image} />
-                    <Text style={{ textAlign: 'center', color: 'black', padding: 8, fontSize: 16, fontWeight : 'bold' }} >{place.value}</Text>
+                    <Text style={{ textAlign: 'center', color: 'black', padding: 8, fontSize: 16, fontWeight: 'bold' }} >{place.value}</Text>
                 </View>
 
             )
@@ -18,7 +18,7 @@ const PlaceDetail = (props) => {
     }
 
     return (
-        <Modal visible={props.selectedPlace != null} animationType='slide'>
+        <Modal onBackButtonPress={props.closePlaceHandler} visible={props.selectedPlace != null} animationType='slide'>
             {_placeBody(props.selectedPlace)}
             <View style={styles.detailContainer}>
                 <TouchableOpacity style={styles.deleteBtn} onPress={props.deletePlaceHandler}>

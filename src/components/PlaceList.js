@@ -36,9 +36,7 @@ const styles = StyleSheet.create({
         padding: 16,
         marginBottom: 8,
         fontSize: 16,
-        
-        backgroundColor: 'black'
-    },
+            },
     rowTxt: {
         marginLeft : 16,
         color: 'grey'
